@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
+import { UsersService } from 'src/app/services/users.service';
 import { User } from 'src/app/User';
-import { Users } from 'src/app/socialUsers';
 
 @Component({
   selector: 'app-display',
@@ -8,5 +8,9 @@ import { Users } from 'src/app/socialUsers';
   styleUrls: ['./display.component.css'],
 })
 export class DisplayComponent {
-  users: User[] = Users;
+  users: User[] = [];
+  constructor(private userService: UsersService) {}
+  ngOnInit(): void {
+    this.users = this.userService.getUsers();
+  }
 }
